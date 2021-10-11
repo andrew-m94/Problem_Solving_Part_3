@@ -176,3 +176,79 @@ email_address = '_johndoe123@gmail.com'
 valid_email = (validate_email_address(email_address))
 print(valid_email)
 
+#Problem 6
+
+def position_in_alphabet(string_to_convert):
+    alphabet = {
+    'a': 1,'b':2,'c':3,'d':4,'e':5,'f':6,'g':7,'h':8,'i':9,'j':10,'k':11,'l':12,'m':13,'n':14,'o':15,'p':16,
+    'q':17,'r':18,'s':19,'t':20,'u':21,'v':22,'w':23,'x':24,'y':25,'z':26
+    }
+
+    print(string_to_convert)
+
+    for char in string_to_convert:
+        if char == ' ':
+            continue
+    
+        print(alphabet[char], end= ' ')
+
+position_in_alphabet('coding is fun')
+print('')
+
+#Problem 7
+
+def number_of_turns(current_lock, target_lock):
+
+    element = 0
+    turns = 0
+    up_turns = 0
+    down_turns = 0
+    min_digit = 0
+    max_digit = 9 + 1
+
+    for digit in current_lock:
+        
+        if current_lock[element] > target_lock[element]:
+            down_turns = current_lock[element] - target_lock[element]
+            up_turns = (target_lock[element] - min_digit) + (max_digit - current_lock[element])
+
+        elif current_lock[element] < target_lock[element]:
+            up_turns = target_lock[element] - current_lock[element]
+            down_turns = (current_lock[element] - min_digit) + (max_digit - target_lock[element])
+
+        elif current_lock[element] == target_lock[element]:
+            turns += 0
+            up_turns = 0
+            down_turns = 0
+
+        if up_turns < down_turns:
+            turns += up_turns
+
+        elif up_turns > down_turns:
+            turns += down_turns
+
+        element += 1
+        
+    return turns
+
+current_lock = [3,8,9,3]
+target_lock = [5,2,9,6]
+
+least_amt_of_turns = number_of_turns(current_lock, target_lock)
+print(least_amt_of_turns)
+
+#Problem 8
+
+def reverse_reciprocal(number_to_solve):
+
+    number_to_solve = str(number_to_solve)
+
+    reversed_num =  number_to_solve[::-1]
+
+    reversed_num = int(reversed_num)
+
+    reciprocal = 1 / reversed_num
+    return round((reciprocal), 5)
+
+number_rr = reverse_reciprocal(17)
+print(number_rr)
